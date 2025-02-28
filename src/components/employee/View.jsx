@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 const View = () => {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
-   const STATIC_URL = "https://employee-mg-server.onrender.com/"
+  //  const STATIC_URL = "https://employee-mg-server.onrender.com/"
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -35,9 +35,9 @@ const View = () => {
           <div className="flex flex-col md:flex-row items-center md:items-start">
             {/* Left Side - Profile Image */}
             <div className="relative w-40 h-40 md:w-56 md:h-56 mr-0 md:mr-8 mb-4 md:mb-0">
-              <img 
-                src={employee.userId.profileImage} 
-                alt="Profile-Image" 
+              <img
+                src={`https://employee-mg-server.onrender.com/${employee?.userId?.profileImage}`}
+                alt="Profile-Image"
                 className="w-full h-full rounded-full object-cover"
               />
               {/* Name overlay on the image */}

@@ -6,7 +6,7 @@ const LeaveDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [leave, setLeave] = useState(null);
-  const STATIC_URL = "https://employee-mg-server.onrender.com/"
+  // const STATIC_URL = "https://employee-mg-server.onrender.com/"
 
 
   useEffect(() => {
@@ -26,15 +26,15 @@ const LeaveDetails = () => {
         alert(error.response?.data?.error || "Server Error!");
       }
     };
-    
+
 
     fetchLeave();
   }, [id]);
 
 
-  const changeStatus = async(id, status) => {
+  const changeStatus = async (id, status) => {
     try {
-      const response = await axios.put(`https://employee-mg-server.onrender.com/api/leave/${id}`, {status}, {
+      const response = await axios.put(`https://employee-mg-server.onrender.com/api/leave/${id}`, { status }, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem('token')}`
         }
@@ -48,7 +48,7 @@ const LeaveDetails = () => {
       alert(error.response?.data?.error || "Server Error!");
     }
   }
-
+  // https://employee-mg-server.onrender.com/${emp.userId.profileImage}
   return (
     <>
       {leave ? (
@@ -58,7 +58,7 @@ const LeaveDetails = () => {
             {/* Left Side - Profile Image */}
             <div className="relative w-40 h-40 md:w-56 md:h-56 mr-0 md:mr-8 mb-4 md:mb-0">
               <img
-                src={`https://employee-mg-server.vercel.app/${leave.employeeId.userId.profileImage}`}
+                src={`https://employee-mg-server.onrender.com/${leave.employeeId.userId.profileImage}`}
                 alt="Profile-Image"
                 className="w-full h-full rounded-full object-cover"
               />
@@ -105,8 +105,8 @@ const LeaveDetails = () => {
                   <span className="text-lg">{
                     leave.status === 'Pending' ? (
                       <div className='flex space-x-2' >
-                        <button className='bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer' onClick={()=> changeStatus(leave._id, "Approved")} >Approved</button>
-                        <button className='bg-orange-600 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition duration-300 cursor-pointer' onClick={()=> changeStatus(leave._id, "Rejected")} >Rejected</button>
+                        <button className='bg-green-500 text-white px-4 py-1 rounded-lg hover:bg-green-600 transition duration-300 cursor-pointer' onClick={() => changeStatus(leave._id, "Approved")} >Approved</button>
+                        <button className='bg-orange-600 text-white px-4 py-1 rounded-lg hover:bg-red-600 transition duration-300 cursor-pointer' onClick={() => changeStatus(leave._id, "Rejected")} >Rejected</button>
                       </div>
                     ) : <p className='font-medium'>{leave.status}</p>
                   }</span>
