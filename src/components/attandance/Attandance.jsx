@@ -8,6 +8,7 @@ const Attandance = () => {
   const [attendance, setAttendance] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filteredAttendance, setFilteredAttendance] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   const statusChange = () => {
     fetchAttendance();
@@ -55,13 +56,16 @@ const Attandance = () => {
     }
   };
 
+
   const handleFilter = (e) => {
     const searchValue = e.target.value.toLowerCase();
+    setSearchTerm(searchValue); // Update search term state
     const records = attendance.filter((emp) =>
       emp.department.toLowerCase().includes(searchValue)
     );
     setFilteredAttendance(records);
   };
+  
 
   if (loading) {
     return <div>Loading...</div>;
